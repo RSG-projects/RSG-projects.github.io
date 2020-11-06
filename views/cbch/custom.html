@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Custom bot creator!</title>
+  <link rel="stylesheet" href="/css/main.css" />
+  <meta data-n-head="ssr" charset="utf-8" />
+  <meta data-n-head="ssr" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta data-n-head="ssr" data-hid="description" name="description" content="The official site of RobinSchapendonk" />
+  <meta data-n-head="ssr" data-hid="author" name="author" content="Robin Schapendonk" />
+  <meta data-n-head="ssr" data-hid="publisher" name="publisher" content="Robin Schapendonk" />
+  <meta data-n-head="ssr" data-hid="image" name="image" content="/images/logo.png" />
+  <meta data-n-head="ssr" data-hid="robots" name="robots" content="index, follow" />
+  <meta data-n-head="ssr" data-hid="theme-color" name="theme-color" content="#00FFFF" />
+  <meta data-n-head="ssr" data-hid="og:site_name" property="og:site_name" content="Robin Schapendonk" />
+  <meta data-n-head="ssr" data-hid="og:type" property="og:type" content="website" />
+  <meta data-n-head="ssr" data-hid="og:url" property="og:url" content="https://robinsch.wtf" />
+  <meta data-n-head="ssr" data-hid="og:description" property="og:description" content="The official site of RobinSchapendonk" />
+  <meta data-n-head="ssr" data-hid="og:locale" property="og:locale" content="en_US" />
+  <meta data-n-head="ssr" data-hid="og:image" property="og:image" content="/images/logo.png" />
+  <meta data-n-head="ssr" data-hid="og:image:type" property="og:image:type" content="image/jpg" />
+  <meta data-n-head="ssr" data-hid="og:image:width" property="og:image:width" content="288" />
+  <meta data-n-head="ssr" data-hid="og:image:height" property="og:image:height" content="288" />
+  <meta data-n-head="ssr" data-hid="og:image:alt" roperty="og:image:alt" content="RobinSchapendonk logo" />
+  <meta data-n-head="ssr" data-hid="mobile-web-app-capable" name="mobile-web-app-capable" content="yes" />
+  <meta data-n-head="ssr" data-hid="og:title" property="og:title" content="RobinSchapendonk" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165715988-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-165715988-1');
+  </script>
+</head>
+
+<body>
+  <header>
+    <nav id="nav"></nav>
+  </header>
+  <h1 class="center title">Custom bot</h1>
+  <section class="information">
+    <img src="/images/cbch.png" alt="cbch" class="round-image" />
+  </section>
+  <h2 class="center title">Please fill all these things in!</h2>
+  <div id="cbch-form">
+    <input id="name" name="name" type="text" placeholder="Bot's name" required />
+    <input id="pfp" name="pfp" type="text" placeholder="Link to bot's pfp">
+    <input id="status" name="status" type="text" placeholder="The bot's status">
+    <input id="months" name="months" type="number" placeholder="Amount of hosting months" required>
+    <textarea id="names" name="commandNames" placeholder="Command names, new names on next line" required></textarea>
+    <textarea id="descriptions" name="commandDescriptions" placeholder="What each command must do, new descriptions on next line" required></textarea>
+    <button onclick="calculate()">Calculate</button>
+  </div>
+  <div id=data style="font-size: 20px;"></div>
+  <footer>
+    copyright 2020 https://robinsch.wtf/
+  </footer>
+  <script>
+    function calculate() {
+      const bot = {
+        name: document.getElementById("name").value,
+        pfp: document.getElementById("name").value,
+        status: document.getElementById("status").value,
+        months: document.getElementById("months").value,
+        names: document.getElementById("names").value.split("\n"),
+        descriptions: document.getElementById("descriptions").value.split("\n")
+      };
+      if (bot.names.length == bot.descriptions.length) {
+        let price = (((((bot.months * 0.25) + (bot.names.lenth * 0.15)) * 1.044) + 0.35) + "00").substring(0, 4);
+        document.getElementById("cbch-form").style = "display: none;";
+        document.getElementById("data").innerHTML += `name: ${bot.name}<br>`;
+        document.getElementById("data").innerHTML += `pfp: ${bot.pfp}<br>`;
+        document.getElementById("data").innerHTML += `status: ${bot.status}<br>`;
+        document.getElementById("data").innerHTML += `commands:<br>`;
+        for (let i = 0; i < bot.names.length; i++) {
+          document.getElementById("data").innerHTML += `${i+1}: ${bot.names[i]} => ${bot.descriptions[i]}<br>`;
+        };
+        document.getElementById("data").innerHTML += `months:${bot.months}<br>`;
+        document.getElementById("data").innerHTML += `price: €${price}<br>`;
+        document.getElementById("data").innerHTML += `If that's correct, join <a href="https://shortrsg.cf/cbch" class="href">this server</a>, type r!new and paste this in there!`;
+      } else {
+        alert(`Amount of names of the commands: ${bot.names.length}\nAmount of descriptions of the commands: ${bot.descriptions.length}\nMake sure that those are the same!`);
+      };
+    };
+  </script>
+  <script src="/javascript/navbar.js"></script>
+</body>
+
+</html>
